@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>СЕСИСТРАЦИЯ</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #EFEBE8;
+            --primary-color: #71553F;
+            --secondary-color: #CEB8A1;
+            --text-color: #333;
+            --light-text: #EFEBE8;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><text x="10" y="50" font-family="Arial" font-size="20" fill="%2371553F" opacity="0.2">∂Y/∂x</text></svg>');
+            background-repeat: repeat;
+        }
+
+        @font-face {
+            font-family: 'Muller';
+            src: local('Muller'), url('https://fonts.example.com/muller.woff2') format('woff2');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'Airfool';
+            src: local('Airfool'), url('https://fonts.example.com/airfool.woff2') format('woff2');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        .container {
+            max-width: 100%;
+            padding: 20px;
+            margin: 0 auto;
+            position: relative;
+            background-color: rgba(239, 235, 232, 0.9);
+            min-height: 100vh;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            margin-bottom: 30px;
+            border-bottom: 1px solid var(--secondary-color);
+        }
+
+        .logo {
+            font-family: 'Airfool', sans-serif;
+            font-size: 24px;
+            color: var(--primary-color);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        .user-icon {
+            width: 40px;
+            height: 40px;
+            background-color: var(--primary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--light-text);
+            cursor: pointer;
+        }
+
+        h1,
+        h2,
+        h3 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            font-family: 'Airfool', sans-serif;
+        }
+
+        h1 {
+            font-size: 24px;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        h2 {
+            font-size: 20px;
+            margin-top: 30px;
+        }
+
+        h3 {
+            font-size: 18px;
+        }
+
+        input,
+        button,
+        select {
+            width: 100%;
+            padding: 12px 15px;
+            margin: 8px 0;
+            border: 1px solid var(--secondary-color);
+            border-radius: 4px;
+            font-size: 16px;
+            font-family: 'Muller', sans-serif;
+            background-color: white;
+        }
+
+        input:focus {
+            border-color: var(--primary-color);
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(113, 85, 63, 0.2);
+        }
+
+        button {
+            background-color: var(--primary-color);
+            color: white;
+            font-weight: 500;
+            cursor: pointer;
+            border: none;
+            transition: background-color 0.3s;
+            font-family: 'Muller', sans-serif;
+        }
+
+        button:hover {
+            background-color: #5a4532;
+        }
+
+        .secondary-button {
+            background-color: white;
+            color: var(--primary-color);
+            border: 1px solid var(--primary-color);
+        }
+
+        .secondary-button:hover {
+            background-color: var(--secondary-color);
+        }
+
+        .card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(113, 85, 63, 0.1);
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 1px solid var(--secondary-color);
+        }
+
+        .progress-container {
+            width: 100%;
+            background-color: var(--secondary-color);
+            border-radius: 4px;
+            margin: 20px 0;
+        }
+
+        .progress-bar {
+            height: 20px;
+            background-color: var(--primary-color);
+            border-radius: 4px;
+            width: 60%;
+            text-align: center;
+            color: white;
+            font-size: 12px;
+            line-height: 20px;
+        }
+
+        .progress-steps {
+            margin: 20px 0;
+        }
+
+        .progress-step {
+            padding: 5px 0;
+            color: var(--text-color);
+        }
+
+        .progress-step.active {
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+
+        .divider {
+            height: 1px;
+            background-color: var(--secondary-color);
+            margin: 20px 0;
+        }
+
+        .footer-text {
+            font-size: 12px;
+            color: var(--text-color);
+            text-align: center;
+            margin-top: 20px;
+            opacity: 0.7;
+        }
+
+        .profile-info {
+            margin-bottom: 15px;
+        }
+
+        .profile-label {
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .profile-value {
+            margin-top: 5px;
+            padding: 10px;
+            background-color: var(--secondary-color);
+            border-radius: 4px;
+            color: white;
+        }
+
+        .non-editable {
+            color: var(--text-color);
+            font-style: italic;
+            opacity: 0.7;
+            font-size: 14px;
+        }
+
+        .checklist {
+            margin: 20px 0;
+        }
+
+        .checklist-item {
+            padding: 10px 0;
+            border-bottom: 1px solid var(--secondary-color);
+            display: flex;
+            align-items: center;
+        }
+
+        .checklist-item:last-child {
+            border-bottom: none;
+        }
+
+        .checklist-item input {
+            width: auto;
+            margin-right: 10px;
+        }
+
+        .map-container {
+            height: 300px;
+            background-color: var(--secondary-color);
+            border-radius: 8px;
+            margin: 20px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><text x="10" y="50" font-family="Arial" font-size="20" fill="white" opacity="0.5">Карта маршрута</text></svg>');
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+        .promo-codes {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        .promo-code {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 10px 15px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+
+        .routes {
+            margin: 20px 0;
+        }
+
+        .route-card {
+            background-color: white;
+            border: 1px solid var(--secondary-color);
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+
+        .route-title {
+            color: var(--primary-color);
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .route-description {
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        @media (min-width: 768px) {
+            .container {
+                max-width: 600px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Главная страница -->
+    <div class="container" id="main-page">
+        <div class="header">
+            <a href="#" class="logo" id="main-logo">
+                <img src="../media/logo site.png" Маршруты </a>
+                <div class="user-icon"> <img src="../media/bro.png">                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              </div>
+        </div>
+
+        <div class="card">
+            <h2>Добро пожаловать!</h2>
+            <p>Откройте для себя новые маршруты и получите специальные предложения от наших партнеров.</p>
+
+            <h3>Ваши промокоды</h3>
+            <div class="promo-codes">
+                <div class="promo-code">TOUR10</div>
+                <div class="promo-code">CITY2023</div>
+                <div class="promo-code">WALK15</div>
+            </div>
+
+            <h3>Доступные маршруты</h3>
+            <div class="routes">
+                <div class="route-card">
+                    <div class="route-title">Исторический центр</div>
+                    <div class="route-description">Познакомьтесь с главными достопримечательностями города</div>
+                    <button class="secondary-button">Начать маршрут</button>
+                </div>
+                <div class="route-card">
+                    <div class="route-title">Парки и сады</div>
+                    <div class="route-description">Самые живописные зеленые уголки города</div>
+                    <button class="secondary-button">Начать маршрут</button>
+                </div>
+                <div class="route-card">
+                    <div class="route-title">Архитектурные шедевры</div>
+                    <div class="route-description">Уникальные здания разных эпох</div>
+                    <button class="secondary-button">Начать маршрут</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Страница входа -->
+    <div class="container" id="login-page" style="display: none;">
+        <div class="header">
+            <a href="#" class="logo" id="login-logo">
+                <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text x='10' y='50' font-family='Arial' font-size='20' fill='%2371553F'>1/2×4=6</text></svg>"
+                    alt="Логотип">
+                Вход
+            </a>
+            <div class="user-icon" id="user-icon-login">👤</div>
+        </div>
+
+        <div class="card">
+            <h1>ВХОД В ЛИЧНЫЙ КАБИНЕТ</h1>
+
+            <input type="email" placeholder="Введите адрес электронной почты">
+            <input type="password" placeholder="Введите пароль">
+
+            <button id="login-btn">Войти</button>
+
+            <p style="text-align: center; margin: 15px 0;">Если у вас ещё нет аккаунта, воспользуйтесь этой кнопкой!</p>
+
+            <button class="secondary-button" id="register-btn">Зарегистрироваться</button>
+
+            <p class="footer-text">*регистрация на сайте позволяет пользоваться специальными предложениями от партнёров
+                и наблюдать свой прогресс по количеству пройденных маршрутов</p>
+        </div>
+    </div>
+
+    <!-- Страница регистрации -->
+    <div class="container" id="register-page" style="display: none;">
+        <div class="header">
+            <a href="#" class="logo" id="register-logo">
+                <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text x='10' y='50' font-family='Arial' font-size='20' fill='%2371553F'>1/2×4=6</text></svg>"
+                    alt="Логотип">
+                Регистрация
+            </a>
+            <div class="user-icon" id="user-icon-register">👤</div>
+        </div>
+
+        <h1>РЕГИСТРАЦИЯ</h1>
+        <p style="text-align: center; margin-bottom: 20px; color: var(--primary-color);">*регистрация на сайте позволяет
+            пользоваться специальными предложениями от партнёров и наблюдать свой прогресс по количеству пройденных
+            маршрутов</p>
+
+        <div class="card">
+            <h2>Фамилия</h2>
+            <input type="text" placeholder="Введите свою фамилию">
+
+            <h2>Имя</h2>
+            <input type="text" placeholder="Введите своё имя">
+
+            <h2>Отчество</h2>
+            <input type="text" placeholder="Введите своё отчество">
+
+            <h2>Почта</h2>
+            <input type="email" placeholder="Введите адрес электронной почты">
+
+            <h2>ВУЗ/колледж</h2>
+            <input type="text" placeholder="Введите название ВУЗа/колледжа">
+
+            <h2>Пароль</h2>
+            <input type="password" placeholder="Придумайте пароль">
+
+            <h2>Повторите пароль</h2>
+            <input type="password" placeholder="Введите пароль повторно">
+
+            <div class="divider"></div>
+
+            <button id="complete-register-btn">Зарегистрироваться</button>
+
+            <p class="footer-text">*нажимая эту кнопку, вы соглашаетесь открывать для себя Петербург по-новому</p>
+        </div>
+    </div>
+
+    <!-- Страница профиля -->
+    <div class="container" id="profile-page" style="display: none;">
+        <div class="header">
+            <a href="#" class="logo" id="profile-logo">
+                <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text x='10' y='50' font-family='Arial' font-size='20' fill='%2371553F'>1/2×4=6</text></svg>"
+                    alt="Логотип">
+                Профиль
+            </a>
+            <div class="user-icon" id="user-icon-profile">👤</div>
+        </div>
+
+        <h1 id="profile-name">Фамилия Имя Отчество</h1>
+        <p style="text-align: center; color: var(--primary-color);" id="profile-university">Название ВУЗа</p>
+
+        <button class="secondary-button" id="edit-profile-btn">Редактировать информацию</button>
+
+        <div class="divider"></div>
+
+        <h2>Процесс</h2>
+
+        <div class="progress-container">
+            <div class="progress-bar">60%</div>
+        </div>
+
+        <div class="progress-steps">
+            <div class="progress-step active">100%</div>
+            <div class="progress-step active">90%</div>
+            <div class="progress-step active">80%</div>
+            <div class="progress-step active">70%</div>
+            <div class="progress-step active">60%</div>
+            <div class="progress-step">50%</div>
+            <div class="progress-step">40%</div>
+            <div class="progress-step">30%</div>
+            <div class="progress-step">20%</div>
+            <div class="progress-step">10%</div>
+        </div>
+
+        <p style="text-align: center; margin: 20px 0;">Пройдено 4 маршрута</p>
+
+        <button id="new-routes-btn">Отправиться покорять новые горизонты!</button>
+    </div>
+
+    <!-- Страница с картой и чек-листом -->
+    <div class="container" id="map-page" style="display: none;">
+        <div class="header">
+            <a href="#" class="logo" id="map-logo">
+                <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text x='10' y='50' font-family='Arial' font-size='20' fill='%2371553F'>1/2×4=6</text></svg>"
+                    alt="Логотип">
+                Маршрут
+            </a>
+            <div class="user-icon" id="user-icon-map">👤</div>
+        </div>
+
+        <h1>Исторический центр</h1>
+
+        <div class="map-container">
+            [Карта маршрута]
+        </div>
+
+        <h2>ЧЕК-ЛИСТ</h2>
+
+        <div class="checklist">
+            <div class="checklist-item">
+                <input type="checkbox" id="item1">
+                <label for="item1">Пункт 1</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="item2">
+                <label for="item2">Пункт 2</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="item3">
+                <label for="item3">Пункт 3</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="item4">
+                <label for="item4">Пункт 4</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="item5">
+                <label for="item5">Пункт 5</label>
+            </div>
+        </div>
+    </div>
+
+    <!-- Страница редактирования профиля -->
+    <div class="container" id="edit-profile-page" style="display: none;">
+        <div class="header">
+            <a href="#" class="logo" id="edit-logo">
+                <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text x='10' y='50' font-family='Arial' font-size='20' fill='%2371553F'>1/2×4=6</text></svg>"
+                    alt="Логотип">
+                Редактирование
+            </a>
+            <div class="user-icon" id="user-icon-edit">👤</div>
+        </div>
+
+        <h1>Профиль</h1>
+
+        <div class="card">
+            <h2>ОСНОВНАЯ ИНФОРМАЦИЯ</h2>
+
+            <div class="profile-info">
+                <div class="profile-label">Фамилия</div>
+                <div class="profile-value" id="edit-lastname">Фамилия</div>
+            </div>
+
+            <div class="profile-info">
+                <div class="profile-label">Имя</div>
+                <div class="profile-value" id="edit-firstname">Имя</div>
+            </div>
+
+            <div class="profile-info">
+                <div class="profile-label">Отчество</div>
+                <div class="profile-value" id="edit-middlename">Отчество</div>
+            </div>
+
+            <p class="non-editable">*данный блок информации отредактировать не выйдет</p>
+
+            <div class="profile-info">
+                <div class="profile-label">Почта</div>
+                <input type="email" value="Адрес почты" id="edit-email">
+            </div>
+
+            <div class="profile-info">
+                <div class="profile-label">ВУЗ/колледж</div>
+                <input type="text" value="ВУЗ/колледж" id="edit-university">
+            </div>
+
+            <h2>ИЗМЕНЕНИЕ ПАРОЛЯ</h2>
+
+            <input type="password" placeholder="Введите старый пароль">
+            <input type="password" placeholder="Введите новый пароль">
+            <input type="password" placeholder="Повторите новый пароль">
+
+            <button id="save-changes-btn">Сохранить изменения</button>
+        </div>
+    </div>
+
+    <script>
+        // Текущее состояние пользователя
+        let isLoggedIn = false;
+
+        // Навигация
+        function showPage(pageId) {
+            document.querySelectorAll('.container').forEach(page => {
+                page.style.display = 'none';
+            });
+            document.getElementById(pageId).style.display = 'block';
+        }
+
+        // Обработчики логотипа
+        document.querySelectorAll('.logo').forEach(logo => {
+            logo.addEventListener('click', function (e) {
+                e.preventDefault();
+                showPage('main-page');
+            });
+        });
+
+        // Обработчики иконки пользователя
+        document.querySelectorAll('.user-icon').forEach(icon => {
+            icon.addEventListener('click', function () {
+                if (isLoggedIn) {
+                    showPage('profile-page');
+                } else {
+                    showPage('login-page');
+                }
+            });
+        });
+
+        // Обработчики кнопок
+        document.getElementById('register-btn').addEventListener('click', function () {
+            showPage('register-page');
+        });
+
+        document.getElementById('complete-register-btn').addEventListener('click', function () {
+            isLoggedIn = true;
+            updateProfileInfo();
+            showPage('profile-page');
+        });
+
+        document.getElementById('login-btn').addEventListener('click', function () {
+            isLoggedIn = true;
+            updateProfileInfo();
+            showPage('profile-page');
+        });
+
+        document.getElementById('edit-profile-btn').addEventListener('click', function () {
+            showPage('edit-profile-page');
+        });
+
+        document.getElementById('new-routes-btn').addEventListener('click', function () {
+            showPage('map-page');
+        });
+
+        document.getElementById('save-changes-btn').addEventListener('click', function () {
+            updateProfileInfo();
+            showPage('profile-page');
+        });
+
+        // Обновление информации профиля
+        function updateProfileInfo() {
+            const lastName = document.getElementById('edit-lastname').textContent;
+            const firstName = document.getElementById('edit-firstname').textContent;
+            const middleName = document.getElementById('edit-middlename').textContent;
+            const university = document.getElementById('edit-university').value;
+            const email = document.getElementById('edit-email').value;
+
+            document.getElementById('profile-name').textContent = `${lastName} ${firstName} ${middleName}`;
+            document.getElementById('profile-university').textContent = university;
+        }
+
+        // Показать главную страницу при загрузке
+        showPage('main-page');
+    </script>
+</body>
+
+</html>
